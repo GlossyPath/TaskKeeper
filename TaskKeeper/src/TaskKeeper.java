@@ -27,6 +27,8 @@ public class TaskKeeper {
         MyFrame frame = new MyFrame();
 
         frame.setVisible(true);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }    
 }
 
