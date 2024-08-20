@@ -17,7 +17,9 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+
 import javax.swing.JFrame;
 
 
@@ -42,8 +44,47 @@ class ListaTareas {
     public ListaTareas (String nomTarea){
 
         this.listaTareas = new ArrayList<>();
-        this.nomTarea = nomTarea;
+        this.nomTarea = setNomTarea(nomTarea);
     }
+
+public void añadirTarea(String nomTarea){
+    if(this.listaTareas.stream().anyMatch(tarea -> tarea.equals(nomTarea))){
+        System.out.println("La tarea ya existe");
+
+    } else {
+        this.listaTareas.add(nomTarea);
+    }
+}
+
+public void eliminarTarea(){
+
+}
+
+public void buscarTarea(String nomTarea){
+
+}
+
+public List getListaTareas() {
+    return listaTareas;
+}
+
+public void setListaTareas(List listaTareas) {
+    this.listaTareas = listaTareas;
+}
+
+public String getNomTarea() {
+    return nomTarea;
+}
+
+public String setNomTarea(String nomTarea) throws InputMismatchException {
+    if(this.nomTarea.isEmpty() || this.nomTarea.isBlank() ||  nomTarea.chars().anyMatch(Character::isDigit)){
+        throw new InputMismatchException ("La tarea no puede estar vacia o contener numeros");
+    }
+
+    return this.nomTarea = nomTarea;
+}
+
+
 
 
 
