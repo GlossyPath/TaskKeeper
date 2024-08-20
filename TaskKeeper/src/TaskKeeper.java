@@ -76,6 +76,16 @@ public void buscarTarea(String nomTarea){
 
 }
 
+public String toString(){
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("Lista de Tareas:\n");
+
+    this.listaTareas.forEach(t -> sb.append(t).append("\n"));
+
+    return sb.toString();
+}
+
 public List getListaTareas() {
     return listaTareas;
 }
