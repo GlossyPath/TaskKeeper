@@ -15,6 +15,8 @@ public class ListaTareas {
     }
 
 public void añadirTarea(String nomTarea){
+    setNomTarea(nomTarea);
+    
     if(this.listaTareas.stream().anyMatch(tarea -> tarea.equals(nomTarea))){
         System.out.println("La tarea ya existe");
 
