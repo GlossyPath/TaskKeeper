@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class ListaTareas {
     private List <String> listaTareas;
     private String nomTarea;
+
+    private final Scanner SC = new Scanner(System.in);
 
     public ListaTareas (){
         this.listaTareas = new ArrayList<>();
@@ -20,7 +23,7 @@ public void añadirTarea(String nomTarea){
     }
 }
 
-public void eliminarTarea(int posicion){
+public void eliminarTarea(int posicion){    
     if (posicion < 0 || posicion >= this.listaTareas.size()) {
         System.out.println("Índice fuera de rango");
 
@@ -34,8 +37,17 @@ public void eliminarTarea(int posicion){
     }
 }
 
-public void buscarTarea(String nomTarea){
+public void buscarTarea(){
 
+    System.out.println("Intoduce el nombre de la tarea que estas buscando");
+    String nombreTarea = SC.nextLine();
+
+    if(this.listaTareas.stream().anyMatch(t -> t.equalsIgnoreCase(nombreTarea))){
+       System.out.println("La tarea existe");
+
+    } else {
+        System.err.println("No hay ninguna tarea con ese nombre");
+    }
 }
 
 @Override
