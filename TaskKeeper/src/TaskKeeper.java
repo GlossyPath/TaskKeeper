@@ -16,7 +16,8 @@
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 
 
@@ -31,6 +32,23 @@ public class TaskKeeper {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }    
 }
+
+
+class ListaTareas {
+
+    private List listaTareas;
+    private String nomTarea;
+
+    public ListaTareas (String nomTarea){
+
+        this.listaTareas = new ArrayList<>();
+        this.nomTarea = nomTarea;
+    }
+
+
+
+} 
+
 
 class MyFrame extends JFrame {
 
