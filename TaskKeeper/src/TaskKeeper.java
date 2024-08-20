@@ -32,6 +32,8 @@ public class TaskKeeper {
         frame.setVisible(true);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    
     }    
 }
 
@@ -56,8 +58,18 @@ public void añadirTarea(String nomTarea){
     }
 }
 
-public void eliminarTarea(){
+public void eliminarTarea(int posicion){
+    if (posicion < 0 || posicion >= this.listaTareas.size()) {
+        System.out.println("Índice fuera de rango");
 
+    } else if (this.listaTareas.isEmpty()) {
+        System.out.println("La lista de tareas está vacía");
+
+    } else {
+        String tareaEliminada = (String) this.listaTareas.get(posicion);
+        this.listaTareas.remove(posicion);
+        System.out.println("Tarea " + tareaEliminada + " eliminada correctamente");
+    }
 }
 
 public void buscarTarea(String nomTarea){
@@ -83,10 +95,6 @@ public String setNomTarea(String nomTarea) throws InputMismatchException {
 
     return this.nomTarea = nomTarea;
 }
-
-
-
-
 
 } 
 
