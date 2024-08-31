@@ -20,9 +20,13 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 
 public class TaskKeeper {
@@ -64,6 +68,8 @@ class MyFrame extends JFrame {
 
         add(plantilla);
 
+        
+
     }
 }
 
@@ -72,6 +78,10 @@ class MiPlantilla extends JPanel {
     public MiPlantilla() {
 
         setBackground(Color.WHITE);
+        Texto textoYBoton = new Texto();
+        textoYBoton.setBounds(50, 100, 300, 50); 
+        add(textoYBoton);
+
     }
 
     @Override
@@ -96,10 +106,32 @@ class MiPlantilla extends JPanel {
     int y = (ALTO - altoTexto) / 2 + altoTexto;
 
     g2.drawString(mensaje, x, 50);
-
-
    }
-    
+}
+
+class Texto extends JPanel implements ActionListener {
+
+    private JTextField textField;
+    private JButton button;
+
+    public Texto() {
+        textField = new JTextField(20);
+        button = new JButton("Enviar");
+
+        // Añadir los componentes al panel
+        add(textField);
+        add(button);
+
+        // Añadir el ActionListener al botón
+        button.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String textoCapturado = textField.getText();
+        System.out.println("Texto capturado: " + textoCapturado);
+        // Aquí puedes hacer más cosas con el texto capturado
+    }
 }
 
 
