@@ -38,14 +38,6 @@ public class TaskKeeper {
         frame.setVisible(true);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        ListaTareas nuevaListaTareas = new ListaTareas();
-
-        nuevaListaTareas.añadirTarea("Recoger los platos");
-        nuevaListaTareas.añadirTarea("Limpiar los armarios");
-
-        System.out.println(nuevaListaTareas);
-    
     }    
 }
 
@@ -67,9 +59,6 @@ class MyFrame extends JFrame {
         MiPlantilla plantilla = new MiPlantilla();
 
         add(plantilla);
-
-        
-
     }
 }
 
@@ -78,10 +67,12 @@ class MiPlantilla extends JPanel {
     public MiPlantilla() {
 
         setBackground(Color.WHITE);
-        Texto textoYBoton = new Texto();
-        textoYBoton.setBounds(50, 100, 300, 50); 
-        add(textoYBoton);
 
+        Texto textoYBoton = new Texto();
+
+        textoYBoton.setBounds(50, 100, 300, 50); 
+
+        add(textoYBoton);
     }
 
     @Override
