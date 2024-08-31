@@ -14,10 +14,15 @@
  * 
  */
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class TaskKeeper {
@@ -55,5 +60,46 @@ class MyFrame extends JFrame {
         setSize(width/2, height/2);
         setLocation(width/4, height/4);
 
+        MiPlantilla plantilla = new MiPlantilla();
+
+        add(plantilla);
+
     }
 }
+
+class MiPlantilla extends JPanel {
+
+    public MiPlantilla() {
+
+        setBackground(Color.WHITE);
+    }
+
+    @Override
+   public void paintComponent (Graphics g) {
+    super.paintComponent(g);//invocamos al metodo de JPanel
+
+    String mensaje = "¡Bienvenido a TaskKeeper!";
+
+    Graphics2D g2 = (Graphics2D) g;
+
+    Font tipoLetra = new Font("Yu Gothic UI", Font.BOLD, 20);
+    g2.setFont(tipoLetra);
+    g2.setColor(Color.BLACK);
+
+    final int ANCHO = getWidth();
+     final int ALTO = getHeight();
+
+    int anchoTexto = g2.getFontMetrics().stringWidth(mensaje);
+    int altoTexto = g2.getFontMetrics().getHeight();
+
+    int x = (ANCHO - anchoTexto) / 2;
+    int y = (ALTO - altoTexto) / 2 + altoTexto;
+
+    g2.drawString(mensaje, x, 50);
+
+
+   }
+    
+}
+
+

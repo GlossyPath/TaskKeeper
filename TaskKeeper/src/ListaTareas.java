@@ -35,7 +35,7 @@ public void eliminarTarea(int posicion){
     } else {
         String tareaEliminada = (String) this.listaTareas.get(posicion);
         this.listaTareas.remove(posicion);
-        System.out.println("Tarea " + tareaEliminada + " eliminada correctamente");
+        System.out.println("Tarea: " + tareaEliminada + " eliminada correctamente");
     }
 }
 
