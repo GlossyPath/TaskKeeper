@@ -22,7 +22,6 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -64,65 +63,67 @@ class MyFrame extends JFrame {
 
 class MiPlantilla extends JPanel {
 
+    private JTextField textField;
+    private JButton button;
+    private String textoCapturado;
+
     public MiPlantilla() {
 
         setBackground(Color.WHITE);
 
-        Texto textoYBoton = new Texto();
+        setLayout(null);  // Usar un layout nulo para posicionar los componentes manualmente
 
-        textoYBoton.setBounds(50, 100, 300, 50); 
+        this.textField = new JTextField(20);
+        
+        this.button = new JButton("Enviar"); 
 
-        add(textoYBoton);
-    }
-
-    @Override
-   public void paintComponent (Graphics g) {
-    super.paintComponent(g);//invocamos al metodo de JPanel
-
-    String mensaje = "¡Bienvenido a TaskKeeper!";
-
-    Graphics2D g2 = (Graphics2D) g;
-
-    Font tipoLetra = new Font("Yu Gothic UI", Font.BOLD, 20);
-    g2.setFont(tipoLetra);
-    g2.setColor(Color.BLACK);
-
-    final int ANCHO = getWidth();
-     final int ALTO = getHeight();
-
-    int anchoTexto = g2.getFontMetrics().stringWidth(mensaje);
-    int altoTexto = g2.getFontMetrics().getHeight();
-
-    int x = (ANCHO - anchoTexto) / 2;
-    int y = (ALTO - altoTexto) / 2 + altoTexto;
-
-    g2.drawString(mensaje, x, 50);
-   }
-}
-
-class Texto extends JPanel implements ActionListener {
-
-    private JTextField textField;
-    private JButton button;
-
-    public Texto() {
-        textField = new JTextField(20);
-        button = new JButton("Enviar");
-
-        // Añadir los componentes al panel
         add(textField);
         add(button);
 
-        // Añadir el ActionListener al botón
-        button.addActionListener(this);
+
+        button.addActionListener(new ActionListener() {  // CLASE INTERNA ANÓNIMA
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textoCapturado = textField.getText();
+                System.out.println("Texto capturado: " + textoCapturado);
+                // Aquí puedes hacer más cosas con el texto capturado
+            }
+        });
     }
+    
+    public String getTextoCapturado() {
+        return textoCapturado;
+    }
+
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String textoCapturado = textField.getText();
-        System.out.println("Texto capturado: " + textoCapturado);
-        // Aquí puedes hacer más cosas con el texto capturado
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        String mensaje = "¡Bienvenido a TaskKeeper!", tareaParaGuardar = "Tarea para guardar:";
+
+
+        Graphics2D g2 = (Graphics2D) g;
+
+        Font tipoLetra = new Font("Yu Gothic UI", Font.BOLD, 20);
+        g2.setFont(tipoLetra);
+        g2.setColor(Color.BLACK);
+
+        final int ANCHO = getWidth();
+        final int ALTO = getHeight();
+
+        int anchoTexto = g2.getFontMetrics().stringWidth(mensaje);
+        int altoTexto = g2.getFontMetrics().getHeight();
+
+        int x = (ANCHO - anchoTexto) / 2;
+        int y = (ALTO - altoTexto) / 2 + altoTexto;
+
+        g2.drawString(mensaje, x, 50);
+        g2.drawString(tareaParaGuardar, x/2, 100);
+
+        textField.setBounds((x/2) + 180, 80, 200, 30); 
+        button.setBounds((x/2)+360, 80, 80, 30); 
+
+        
     }
 }
-
-
